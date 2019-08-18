@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>List of members</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Full name</th>
+        <th>Email</th>
+        <th>Sex</th>
+        <th>Registered Date</th>
+        <th>Edit</th>
+      </tr>
+      {% for value in dataArr %}
+      <tr>
+        <td>
+          <a href="{{constant('member\\Bootstrap::ENTRY_URL')}}detail.php?mem_id={{ value.mem_id }}">{{ value.mem_id }}</a>
+        </td>
+        <td>
+          <span style="font-size:60%;">{{ value.family_name_kana }} {{ value.first_name_kana }}</span><br/>
+          {{ value.family_name }} {{ value.first_name }}
+        </td>
+        <td>{{ value.email }}</td>
+        <td>
+          {% if value.sex == '1' %}male{% elseif value.sex == '2' %}female{% endif%}
+        </td>
+        <td>{{ value.regist_date }}</td>
+        <td>
+          <a href="{{constant('member\\Bootstrap::ENTRY_URL')}}update.php?mem_id={{ value.mem_id }}">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
